@@ -1,0 +1,17 @@
+[Thu Aug 17 00:10:17.182102 2023] [core:error] [pid 227980] [client 45.156.128.12:56834] AH00126: Invalid URI in request HEAD /icons/.%2e/%2e%2e/apache2/icons/sphere1.png HTTP/1.1
+[Thu Aug 17 03:15:07.049603 2023] [ssl:error] [pid 227969] [client 18.209.34.213:41650] AH02042: rejecting client initiated renegotiation
+[Mon Aug 21 10:52:39.874783 2023] [authz_core:error] [pid 1830611] [client 165.227.146.2:40444] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/server-status
+[Fri Oct 20 22:56:15.465855 2023] [authz_core:error] [pid 3141911] [client 161.35.155.246:34692] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/server-status
+[Wed Dec 20 10:39:35.670475 2023] [authz_core:error] [pid 329423] [client 207.154.240.169:45230] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/server-status
+[Fri Jan 19 07:43:13.195911 2024] [cgi:error] [pid 1003621] [client 128.199.216.35:56616] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Sat Jan 27 09:28:36.642709 2024] [cgi:error] [pid 1165717] [client 212.113.119.49:57993] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Sat Jan 27 09:28:37.089837 2024] [cgi:error] [pid 1165339] [client 212.113.119.49:58058] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Sun Feb 18 20:18:49.366074 2024] [authz_core:error] [pid 1757510] [client 164.92.84.255:55874] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/server-status
+[Sun Mar 03 09:08:10.056681 2024] [cgi:error] [pid 2198341] [client 143.198.196.98:42524] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Mon Mar 18 13:39:47.978857 2024] [authz_core:error] [pid 2641444] [client 213.199.47.192:43646] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/wp-config.phps
+[Mon Mar 18 13:40:15.476758 2024] [cgi:error] [pid 2642644] [client 213.199.47.192:42428] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Mon Mar 18 23:34:08.192207 2024] [authz_core:error] [pid 2651292] [client 213.199.47.192:48048] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/wp-config.phps
+[Mon Mar 18 23:34:40.875023 2024] [cgi:error] [pid 2652475] [client 213.199.47.192:56336] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Fri Apr 19 05:17:58.283263 2024] [authz_core:error] [pid 485826] [client 96.126.110.74:59936] AH01630: client denied by server configuration: /var/www/dr-imanebenjelloun.tayssir.cloud/server-status
+[Mon May 27 05:17:42.429073 2024] [cgi:error] [pid 1373816] [client 142.93.246.86:43648] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
+[Mon May 27 05:17:44.703335 2024] [cgi:error] [pid 1368151] [client 142.93.246.86:43654] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/.env
