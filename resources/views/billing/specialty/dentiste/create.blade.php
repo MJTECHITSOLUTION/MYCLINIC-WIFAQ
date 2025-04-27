@@ -1,5 +1,5 @@
 @section('content')
-    <form method="post" action="{{ route('billing.store') }}">
+    <form method="post" action="{{ route('billing.store') }}" id="billingForm">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card shadow mb-4">
@@ -114,7 +114,10 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
                         <h6 class="m-0 font-weight-bold text-primary">{{ __('sentence.Invoice Details') }}</h6>
-                        <input type="submit" value="Enregistrer" class="btn btn-success">
+                        <div>
+                            <input type="submit" value="Enregistrer" class="btn btn-success">
+                            <button type="button" id="pasEnCourPayeBtn" class="btn btn-warning ml-2">Pas en cour paye</button>
+                        </div>
                     </div>
 
                     <div class="card-body">
@@ -636,6 +639,35 @@
                     alert('Le montant à payer ne peut pas être inférieur à zéro.');
                     $(this).val(prix);
                 }
+            });
+        });
+
+        // --- Pas en cour paye button logic ---
+        $(document).ready(function () {
+            $('#pasEnCourPayeBtn').on('click', function () {
+                // Set all "payer" and "a_payer" fields to 0
+                // For actes table
+                $('.table-row').each(function () {
+                    // Set a_payer input to 0
+                    $(this).find('input[name="a_payer"]').val(0).trigger('input');
+                    // Set hidden payer[] input to 0
+                    $(this).find('input[name="payer[]"]').val(0);
+                    // Set rest-a-payer-output to prix
+                    var prix = parseFloat($(this).find('.prix').val()) || 0;
+                    $(this).find('.rest-a-payer-output').val(prix.toFixed(2));
+                    // Set total to 0
+                    $(this).find('[id="total"]').val(0);
+                });
+                // For billing_labels (repeatable)
+                $('.new_payer').each(function () {
+                    $(this).val(0);
+                });
+                // Set DepositedAmount to 0
+                $('#DepositedAmount').val(0);
+                // Set payment_status to Unpaid
+                $('select[name="payment_status"]').val('Unpaid');
+                // Submit the form
+                $('#billingForm').submit();
             });
         });
     </script>

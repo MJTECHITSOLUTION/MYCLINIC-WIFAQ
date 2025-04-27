@@ -373,5 +373,6 @@ Route::get('/generate-pdf/{patientId}/{noteId}', 'NoteHonoraire@generatePDF')->n
 Route::get('/generate-verso-pdf/{id}', 'NoteHonoraire@versoPdf')->name('generat_everso.pdf');
 Route::get('/cnss-pdf/{patientId}/{noteId}', 'NoteHonoraire@rectoCnss')->name('cnss.pdf');
 Route::get('/cnss-verso-pdf/{id}', 'NoteHonoraire@cnssversoPdf')->name('cnss_verso.pdf');
-
+//AI
+Route::get('/ai', 'AIController@index')->name('ai.index');
 

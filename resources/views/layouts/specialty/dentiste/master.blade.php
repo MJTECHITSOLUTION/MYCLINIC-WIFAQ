@@ -209,6 +209,21 @@
                         </div>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseai" aria-expanded="true" aria-controls="collapseai">
+                        <i class="fas fa-robot"></i>
+                        <span>Ai assistant</span>
+                    </a>
+                    <div id="collapseai" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            
+                            @can('view all invoices')
+                                <a class="collapse-item" href="{{ route('ai.index') }}">Ai assistant</a>
+                            @endcan
+                            
+                        </div>
+                    </div>
+                </li>
             @endif
 
 
@@ -970,16 +985,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{ __('sentence.Delete') }}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Supprimer</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">{{ __('sentence.Delete Alert') }}</div>
+            <div class="modal-body">Voulez-vous vraiment supprimer cet élément ?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button"
                         data-dismiss="modal">{{ __('sentence.Cancel') }}</button>
-                <a class="btn btn-danger" id="delete_link">{{ __('sentence.Delete') }}</a>
+                <a class="btn btn-danger" id="delete_link">Supprimer</a>
             </div>
         </div>
     </div>
