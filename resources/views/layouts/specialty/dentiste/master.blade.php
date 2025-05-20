@@ -209,21 +209,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseai" aria-expanded="true" aria-controls="collapseai">
-                        <i class="fas fa-robot"></i>
-                        <span>Ai assistant</span>
-                    </a>
-                    <div id="collapseai" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            
-                            @can('view all invoices')
-                                <a class="collapse-item" href="{{ route('ai.index') }}">Ai assistant</a>
-                            @endcan
-                            
-                        </div>
-                    </div>
-                </li>
+                
             @endif
 
 
@@ -685,6 +671,41 @@
                 </li>
 
             @endif
+
+            <hr class="sidebar-divider">
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    AI assistant
+                </div>
+                <!-- Nav Item - Pages Collapse Menu -->
+                {{-- <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSettings"
+                       aria-expanded="true" aria-controls="collapseSettings">
+                        <i class="fas fa-fw fa-cogs"></i>
+                        <span>AI assistant</span>
+                    </a>
+                    <div id="collapseSettings" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <!-- Add your settings items here -->
+                        </div>
+                    </div>
+                </li> --}}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseai" aria-expanded="true" aria-controls="collapseai">
+                    <i class="fas fa-robot"></i>
+                    <span>Ai assistant</span>
+                </a>
+                <div id="collapseai" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        @can('view all invoices')
+                            <a class="collapse-item" href="{{ route('ai.index') }}">Ai assistant</a>
+                        @endcan
+                        
+                    </div>
+                </div>
+            </li>
+
             {{--                @if(Auth::user()->can('create drug') || Auth::user()->can('view all drugs') || Auth::user()->can('view drug') || Auth::user()->can('edit drug'))--}}
 
             {{--                    <!-- Nav Item - Pages Collapse Menu -->--}}
@@ -999,6 +1020,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script src="{{ asset('dashboard/js/vue.js') }}"></script>
 <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>

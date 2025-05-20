@@ -3,40 +3,50 @@
     <!-- DataTables  -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row">
-                <div class="col-3">
-                    <h6 class="m-0 font-weight-bold text-primary w-75 p-2">List des Paiements</h6>
+            <div class="row align-items-center flex-nowrap">
+                <div class="col-auto pr-2">
+                    <h6 class="m-0 font-weight-bold text-primary">Liste des Paiements</h6>
                 </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        {{--                        <label for="PatientID" class="my__label">{{ __('sentence.Patient') }} :</label>--}}
-                        <select class="form-control" name="user_id" id="PatientID">
-                            <option value="">{{ __('sentence.Select Patient') }}</option>
-                            @foreach($patients as $patient)
-                                <option value="{{ $patient->id }}">
-                                    {{ $patient->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        {{ csrf_field() }}
+                <div class="col d-flex justify-content-end align-items-center">
+                    <div class="d-flex">
+                        <div class="mr-2">
+                            <div class="form-group mb-0">
+                                <select class="form-control" name="user_id" id="PatientID" style="min-width: 180px;">
+                                    <option value="">{{ __('sentence.Select Patient') }}</option>
+                                    @foreach($patients as $patient)
+                                        <option value="{{ $patient->id }}">
+                                            {{ $patient->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                {{ csrf_field() }}
+                            </div>
+                        </div>
+                        <form action="{{ route('billing.search') }}" method="GET" class="form-row align-items-center flex-nowrap">
+                            <div class="col-auto pr-2">
+                                <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence de la consultation">
+                            </div>
+                            <div class="col-auto pr-2 d-flex align-items-center">
+                                <span class="mr-1">Du:</span>
+                                <input type="date" class="form-control" id="start_date" name="start_date" value="{{ date('Y-m-d') }}" placeholder="{{ __('Start Date') }}">
+                            </div>
+                            <div class="col-auto pr-2 d-flex align-items-center">
+                                <span class="mr-1">Au:</span>
+                                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="{{ __('End Date') }}">
+                            </div>
+                            <div class="col-auto pr-2">
+                                <select class="form-control" name="payment_status">
+                                    <option value="">Tous les statuts</option>
+                                    <option value="paid">Payé</option>
+                                    <option value="Partially Paid">Partiellement payé</option>
+                                    <option value="unpaid">Non payé</option>
+                                </select>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary">{{ __('sentence.Search') }}</button>
+                            </div>
+                        </form>
                     </div>
-                </div>
-                <div class="col-6">
-                    <form action="{{ route('billing.search') }}" method="GET" class="form-inline float-right">
-                        <div class="form-group mx-2">
-                            <label for="reference" class="sr-only">{{ __('Reference') }}</label>
-                            <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence de la consultation">
-                        </div>
-                        <div class="form-group mx-2">&nbsp; Du:
-                            <label for="start_date" class="sr-only">{{ __('Start Date') }}</label>
-                            <input type="date" class="form-control" id="start_date" name="start_date" value="{{ date('Y-d-m') }}" placeholder="{{ __('Start Date') }}">
-                        </div>
-                        <div class="form-group mx-2">&nbsp; Ou:
-                            <label for="end_date" class="sr-only">{{ __('End Date') }}</label>
-                            <input type="date" class="form-control" id="end_date" name="end_date" placeholder="{{ __('End Date') }}">
-                        </div>
-                        <button type="submit" class="btn btn-primary">{{ __('sentence.Search') }}</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -126,6 +136,7 @@
 {{--                                        <a href="{{ url('billing/edit/' . $invoice->id) }}" class="btn btn-outline-warning btn-circle btn-sm"><i class="fas fa-pen"></i></a>--}}
 {{--                                    @endcan--}}
 {{--                                @endif--}}
+
 
 
 

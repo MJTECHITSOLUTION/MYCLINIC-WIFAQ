@@ -48,15 +48,20 @@
                     <tbody>
                         @forelse($patients as $patient)
                             <tr>
+                                @php 
+                                $doctor = App\User::find($patient->dr_id);
+                                $patientRecord = App\Patient::find($patient->id);
+                                $phone = $patientRecord ? $patientRecord->phone : 'N/A';
+                                @endphp
+
                                 <td><a href="{{ url('patient/view/' . $patient->user_id) }}"> {{ $patient->name }} </a></td>
                                 <td class="text-center"> {{ @\Carbon\Carbon::parse($patient->Patient->birthday)->age }}
                                 </td>
-                                <td class="text-center"> {{ @$patient->Patient->phone }} </td>
+                                <td class="text-center"> {{ $phone }} </td>
                                 <td class="text-center"><label
                                         class="badge badge-primary-soft">{{ $patient->created_at->format('d-m-Y') }}</label>
                                 </td>
                                 <td class="text-center">
-                                    @php $doctor = App\User::find($patient->dr_id); @endphp
                                     @if($doctor)
                                         <label class="badge badge-primary-soft">
                                             <i class="fas fa-user-md mr-1"></i> {{ $doctor->name }}

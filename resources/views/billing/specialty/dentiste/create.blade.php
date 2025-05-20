@@ -115,8 +115,8 @@
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
                         <h6 class="m-0 font-weight-bold text-primary">{{ __('sentence.Invoice Details') }}</h6>
                         <div>
-                            <input type="submit" value="Enregistrer" class="btn btn-success">
-                            <button type="button" id="pasEnCourPayeBtn" class="btn btn-warning ml-2">Pas en cour paye</button>
+                            <input type="submit" value="Enregistrer (Payé)" class="btn btn-success">
+                            <button type="button" id="pasEnCourPayeBtn" class="btn btn-warning ml-2">Enregistrer (Non Payé)</button>
                         </div>
                     </div>
 
@@ -145,7 +145,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">ref</th>
+                                    <th class="text-center">Réf</th>
                                     <th class="text-center">Libellé</th>
                                     <th class="text-center">Statut acte</th>
                                     <th class="text-center">Dent</th>

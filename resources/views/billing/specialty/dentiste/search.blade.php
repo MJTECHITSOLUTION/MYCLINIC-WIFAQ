@@ -22,6 +22,16 @@
                             <label for="end_date" class="sr-only">{{ __('End Date') }}</label>
                             <input type="date" class="form-control" id="end_date" name="end_date" value="{{$endDate}}" placeholder="{{ __('End Date') }}">
                         </div>
+                        <div class="form-group mx-2">
+                            <label for="payment_status" class="sr-only">{{ __('Payment Status') }}</label>
+                            <select class="form-control" id="payment_status" name="payment_status">
+                                <option value="" {{ $paymentStatus == '' ? 'selected' : '' }}>Tous les statuts</option>
+                                <option value="paid" {{ $paymentStatus == 'paid' ? 'selected' : '' }}>Payé</option>
+                                <option value="Partially Paid" {{ $paymentStatus == 'Partially Paid' ? 'selected' : '' }}>Partiellement payé</option>
+                                <option value="unpaid" {{ $paymentStatus == 'unpaid' ? 'selected' : '' }}>Non payé</option>
+                            </select>
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary">{{ __('Search') }}</button>
                     </form>
                 </div>

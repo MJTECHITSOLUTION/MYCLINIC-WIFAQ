@@ -615,7 +615,7 @@
             </div>
         @else
             <br><br><br><br><br>
-            <br><br><br><br><br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br>
         @endif
         <div class="row">
             <div class="col" style="font-size: xx-large; margin-left: 25px; margin-right: 25px; text-align: center;">
@@ -623,7 +623,7 @@
                     <b style="margin-right:10px ;">{{ $prescription->created_at->format('d-m-Y') }}</b>
                 </p>
                 <br><br><br>
-                <b style="display: block;"> {{ $prescription->User->name }} </b>
+                <b style="display: block;"> {{ $prescription->User->name }}  </b>
             </div>
         </div>
         <br>
@@ -709,7 +709,7 @@
             </div>
         @else
         <br><br><br><br><br>
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br>
         @endif
         <div class="row">
             <div class="col" style="font-size: xx-large; margin-left: 25px; margin-right: 25px; text-align: center;">
@@ -768,7 +768,7 @@
                 </div>
             @else
                 <br><br><br><br><br>
-                <br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br><br><br>
             @endif
             <div class="row">
                 <div class="col"
@@ -854,7 +854,7 @@
                     <!-- ROW: Doctor informations -->
                     <div class="row">
                         <div class="col text-center"><br><br><br><br><br><br>
-                            <br><br><br><br><br><br><br><br><br><br><br>
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br>
                             <h1 class="mt-400">CERTIFICAT MEDICAL</h1>
                         </div>
                     </div>

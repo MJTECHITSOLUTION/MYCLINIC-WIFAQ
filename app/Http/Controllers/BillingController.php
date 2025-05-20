@@ -215,7 +215,8 @@ class BillingController extends Controller
         $reference = $request->input('reference');
         $startDate = $request->input('start_date');
         $endDate = $request->input('end_date');
-
+        $paymentStatus = $request->input('payment_status');
+        
         $invoices = Billing::orderBy('billings.id', 'DESC')
             ->join('prescriptions', function ($join) use ($reference) {
                 $join->on('billings.id_prescription', '=', 'prescriptions.id')
@@ -230,6 +231,9 @@ class BillingController extends Controller
             ->when($endDate, function ($query) use ($endDate) {
                 return $query->whereDate('billings.created_at', '<=', $endDate);
             })
+            ->when($paymentStatus, function ($query) use ($paymentStatus) {
+                return $query->where('billings.payment_status', $paymentStatus);
+            })
             ->select('billings.*', 'prescriptions.id as prescriptions_id')
             ->paginate(20);
 
@@ -241,7 +245,7 @@ class BillingController extends Controller
             ->get();
 
 
-        return view('billing.search', ['invoices' => $invoices , 'sumPayments'=>$sumPayments,'reference'=>$reference,'startDate'=>$startDate,'endDate'=>$endDate]);
+        return view('billing.search', ['invoices' => $invoices , 'sumPayments'=>$sumPayments,'reference'=>$reference,'startDate'=>$startDate,'endDate'=>$endDate,'paymentStatus'=>$paymentStatus]);
     }
 
 

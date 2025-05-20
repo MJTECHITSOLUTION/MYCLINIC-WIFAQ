@@ -44,74 +44,81 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered table-striped table-responsive{-sm|-md|-lg|-xl|-xxl}"
-                       id="dataTable" width="100%" cellspacing="0">
-                    <thead class="">
-                    <tr>
-{{--                        <th class="sm__screen">ID</th>--}}
-                        <th>{{ __('sentence.Patient Name') }}</th>
-                        <th class="text-center sm__screen">{{ __('sentence.Age') }}</th>
-                        <th class="text-center xxs__screen">{{ __('sentence.Phone') }}</th>
-{{--                        <th class="text-center sm__screen">{{ __('sentence.Blood Group') }}</th>--}}
-                        <th class="text-center md__screen">{{ __('sentence.Date') }} de création</th>
-{{--                        <th class="text-center  xs__screen">{{ __('sentence.Due Balance') }}</th>--}}
-                        <th class="text-center">Afficher</th>
-                        <th class="text-center">{{ __('sentence.Actions') }}</th>
-                    </tr>
+                <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{ __('sentence.Patient Name') }}</th>
+                            <th class="text-center">{{ __('sentence.Age') }}</th>
+                            <th class="text-center">{{ __('sentence.Phone') }}</th>
+                            <th class="text-center">{{ __('sentence.Date') }} de création</th>
+                            <th class="text-center">Médecin</th>
+                            <th class="text-center">Afficher</th>
+                            <th class="text-center">{{ __('sentence.Actions') }}</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    @forelse($patients as $patient)
-                        <tr>
-{{--                            <td class="sm__screen">{{ $patient->id }}</td>--}}
-                            <td><a href="{{ url('patient/view/' . $patient->id) }}"> {{ $patient->name }} </a></td>
-                            <td class="text-center sm__screen">
-                                {{ @\Carbon\Carbon::parse($patient->birthday)->age }} </td>
-                            <td class="text-center xxs__screen"> {{ @$patient->phone }} </td>
-{{--                            <td class="text-center sm__screen"> {{ @$patient->blood }} </td>--}}
-                            <td class="text-center  md__screen"><label
-                                    class="badge badge-primary-soft ">{{ $patient->created_at->format('d M Y H:i') }}</label>
-                            </td>
-{{--                            <td class="text-center xs__screen"><label--}}
-{{--                                    class="badge badge-primary-soft">{{ Collect($patient->Billings)->where('payment_status', 'Partially Paid')->sum('due_amount') }}--}}
-{{--                                    {{ App\Setting::get_option('currency') }}</label>--}}
-{{--                            </td>--}}
-                            <td class="text-center">
-                                @can('view patient')
-                                    <a href="{{ route('prescription.view_for_user', ['id' => $patient->id]) }}"
-                                       class="btn rounded-0  btn-outline-primary btn-sm"></i>
-                                        Consultation</a>
-                                @endcan
+                        @forelse($patients as $patient)
+                            <tr>
+                                @php 
+                                $doctor = App\User::find($patient->dr_id);
+                                $patientRecord = App\Patient::find($patient->id);
+                                $phone = $patientRecord ? $patientRecord->phone : 'N/A';
+                                @endphp
 
-                                @can('view patient')
-                                    <a href="{{ route('billing.showall', ['id' => $patient->id]) }}"
-                                       class="btn rounded-0  btn-outline-primary btn-sm"></i>
-                                        Paiment</a>
-                                @endcan
-                            </td>
-                            <td class="text-center">
-                                @can('view patient')
-                                    <a href="{{ route('patient.view', ['id' => $patient->id]) }}"
-                                       class="btn btn-outline-success btn-circle btn-sm"><i class="fa fa-eye"></i></a>
-                                @endcan
-                                @can('edit patient')
-                                    <a href="{{ route('patient.edit', ['id' => $patient->id]) }}"
-                                       class="btn btn-outline-warning btn-circle btn-sm"><i class="fa fa-pen"></i></a>
-                                @endcan
-                                @can('delete patient')
-                                    <a href="#" class="btn btn-outline-danger btn-circle btn-sm" data-toggle="modal"
-                                       data-target="#DeleteModal"
-                                       data-link="{{ route('patient.destroy', ['id' => $patient->id]) }}"><i
-                                            class="fas fa-trash"></i></a>
-                                @endcan
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="9" align="center"><img src="{{ asset('img/rest.png') }} " /> <br><br> <b
-                                    class="text-muted">Aucun patient trouvé !</b>
-                            </td>
-                        </tr>
-                    @endforelse
+                                <td><a href="{{ url('patient/view/' . $patient->user_id) }}"> {{ $patient->name }} </a></td>
+                                <td class="text-center"> {{ @\Carbon\Carbon::parse($patient->Patient->birthday)->age }}
+                                </td>
+                                <td class="text-center"> {{ $phone }} </td>
+                                <td class="text-center"><label
+                                        class="badge badge-primary-soft">{{ $patient->created_at->format('d-m-Y') }}</label>
+                                </td>
+                                <td class="text-center">
+                                    @if($doctor)
+                                        <label class="badge badge-primary-soft">
+                                            <i class="fas fa-user-md mr-1"></i> {{ $doctor->name }}
+                                        </label>
+                                    @else
+                                        <span class="text-muted">—</span>
+                                    @endif
+                                </td>
+
+                                <td class="text-center">
+                                    @can('view patient')
+                                        <a href="{{ route('prescription.view_for_user', ['id' => $patient->user_id]) }}"
+                                            class="btn rounded-0  btn-outline-primary btn-sm"></i>
+                                            Consultation</a>
+                                    @endcan
+
+                                    @can('view patient')
+                                        <a href="{{ route('billing.showall', ['id' => $patient->user_id]) }}"
+                                            class="btn rounded-0  btn-outline-primary btn-sm"></i>
+                                            Paiment</a>
+                                    @endcan
+                                </td>
+                                <td class="text-center">
+                                    @can('view patient')
+                                        <a href="{{ route('patient.view', ['id' => $patient->user_id]) }}"
+                                            class="btn   btn-outline-success btn-circle btn-sm"><i class="fa fa-eye"></i></a>
+                                    @endcan
+                                    @can('edit patient')
+                                        <a href="{{ route('patient.edit', ['id' => $patient->user_id]) }}"
+                                            class="btn   btn-outline-warning btn-circle btn-sm"><i class="fa fa-pen"></i></a>
+                                    @endcan
+                                    @can('delete patient')
+                                        <a href="#" class="btn btn-outline-danger btn-circle btn-sm" data-toggle="modal"
+                                            data-target="#DeleteModal"
+                                            data-link="{{ route('patient.destroy', ['id' => $patient->user_id]) }}"><i
+                                                class="fas fa-trash"></i></a>
+                                    @endcan
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="9" align="center"><img src="{{ asset('img/rest.png') }} " /> <br><br> <b
+                                        class="text-muted">No patients found!</b>
+                                </td>
+                            </tr>
+                        @endforelse
 
                     </tbody>
                 </table>

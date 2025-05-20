@@ -349,15 +349,15 @@
                     return false;
                 }
                 
-                if (!$("#doctor").val() || $("#doctor").val() == "0") {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erreur de validation',
-                        text: 'Veuillez sélectionner un médecin',
-                        confirmButtonColor: '#4e73df'
-                    });
-                    return false;
-                }
+                // if (!$("#doctor").val() || $("#doctor").val() == "0") {
+                //     Swal.fire({
+                //         icon: 'error',
+                //         title: 'Erreur de validation',
+                //         text: 'Veuillez sélectionner un médecin',
+                //         confirmButtonColor: '#4e73df'
+                //     });
+                //     return false;
+                // }
                 
                 // File validation
                 var fileInput = $("#file-upload")[0];
